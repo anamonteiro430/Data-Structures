@@ -42,25 +42,41 @@ class BSTNode:
     def contains(self, target):
         #at the start, self will be root
         #compare target against itself
-        if target.value == self.value:
+        if  self.value == target:
             return True
         if target < self.value:
-            #go left
-            return self.left.contains(target)
+            if self.left is None:
+                return False
+            else:
+                return self.left.contains(target)
+        else:
+            if self.right is None:
+                return False
+            else:
+                return self.right.contains(target)
         
 
     # Return the maximum value found in the tree
     def get_max(self): #the "right most node"
-        pass
         #if there's a right
         #   get max on right
         #else
         #   return node.value
+        if self.right:
+            return self.right.get_max()
+        else:
+            return self.value
 
 
     # Call the function `fn` on the value of each node
     def for_each(self, fn):
-        pass
+        #if there are nodes, call the function on them
+        fn(self.value) #calls the value
+
+        if self.left:
+            self.left.for_each(fn)
+        if self.right:
+            self.right.for_each(fn)
 
     # Part 2 -----------------------
 
