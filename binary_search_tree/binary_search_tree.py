@@ -9,6 +9,10 @@ This part of the project comprises two days:
 2. Implement the `in_order_print`, `bft_print`, and `dft_print` methods
    on the BSTNode class.
 """
+
+
+#Each Node is also a Binary Search Tree
+#Recursion
 class BSTNode:
     def __init__(self, value):
         self.value = value
@@ -17,16 +21,42 @@ class BSTNode:
 
     # Insert the given value into the tree
     def insert(self, value):
-        pass
+        #check if it's empty
+        #if empty put node at root
+        #sel.value can't be none
+        if value < self.value:
+        #   if left doesn't exist
+            if self.left is None:
+        #       create left
+                self.left = BSTNode(value)
+            else:
+                self.left.insert(value)
+        else: #value > self.value
+            if self.right is None:
+                self.right = BSTNode(value)
+            else:
+                self.right.insert(value)
 
     # Return True if the tree contains the value
     # False if it does not
     def contains(self, target):
-        pass
+        #at the start, self will be root
+        #compare target against itself
+        if target.value == self.value:
+            return True
+        if target < self.value:
+            #go left
+            return self.left.contains(target)
+        
 
     # Return the maximum value found in the tree
-    def get_max(self):
+    def get_max(self): #the "right most node"
         pass
+        #if there's a right
+        #   get max on right
+        #else
+        #   return node.value
+
 
     # Call the function `fn` on the value of each node
     def for_each(self, fn):
